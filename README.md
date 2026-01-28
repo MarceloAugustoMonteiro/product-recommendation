@@ -93,9 +93,51 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
 
+---
+
+## Solução Implementada
+
+### Arquivos Modificados
+
+| Arquivo | Alteração |
+|---------|-----------|
+| `recommendation.service.js` | Lógica de recomendação com sistema de pontuação |
+| `Form.js` | Conexão com App via callback + validação de campos |
+| `App.js` | Gerenciamento de estado + melhorias de responsividade |
+| `RecommendationList.js` | Visual aprimorado com cards estilizados |
+| `SubmitButton.js` | Botão responsivo (full-width no mobile) |
+
+### Decisões Técnicas
+
+- **Sistema de pontuação**: Cada produto recebe uma pontuação baseada na quantidade de preferências e features que correspondem às seleções do usuário
+- **Empate**: Utilizado `reduce` com operador `>=` para naturalmente retornar o último produto em caso de empate
+- **Performance**: Algoritmo O(n) com única iteração usando `reduce`, evitando múltiplas passagens no array
+- **Comunicação Form → App**: Padrão React de "lifting state up" via callback prop
+- **Validação**: Formulário exige ao menos uma seleção e tipo de recomendação antes de submeter
+
+### Melhorias de UX
+
+- Layout responsivo para dispositivos móveis
+- Validação com mensagens de erro claras
+- Cards visuais para exibição dos produtos recomendados
+- Exibição da categoria do produto nos resultados
+
+### Testes
+
+5 testes unitários cobrindo:
+- SingleProduct com match exato
+- MultipleProducts com múltiplos matches
+- SingleProduct retornando maior pontuação
+- Empate retornando último produto
+- Nenhum match retornando array vazio
+
+Para executar os testes: `yarn test`
+
+---
+
 ## Autor
 
-Desenvolvido por [Seu Nome]
+Desenvolvido por Marcelo A. Monteiro
 
 ## Licença
 
